@@ -82,3 +82,9 @@ Lombok 的 @Slf4j 注解会自动生成一个 SLF4J 日志对象，其等效于
 ```java
 private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(class);
 ```
+
+### 拓展阅读
+
+[Lombok 官方文档](https://projectlombok.org/features)
+
+[柏码知识库 - Lombok 极速上手](https://www.itbaima.cn/zh-CN/document/iqbc2haub31bwqtz)
