@@ -125,12 +125,10 @@ public class AutoFillHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         this.setFieldValByName("createdAt", LocalDateTime.now(), metaObject);
         this.setFieldValByName("updatedAt", LocalDateTime.now(), metaObject);
-        this.setFieldValByName("deleted", Boolean.FALSE, metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.setFieldValByName("updateUid", getCurrentUserId(), metaObject);
         this.setFieldValByName("updatedAt", LocalDateTime.now(), metaObject);
     }
 }
