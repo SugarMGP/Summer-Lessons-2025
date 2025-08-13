@@ -1,5 +1,6 @@
 package com.github.sugarmgp.demoproject.result;
 
+import com.github.sugarmgp.demoproject.constant.ExceptionEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
@@ -25,5 +26,9 @@ public class AjaxResult<T> {
 
     public static <N> AjaxResult<N> fail(Integer code, String msg) {
         return new AjaxResult<>(code, msg, null);
+    }
+
+    public static <N> AjaxResult<N> fail(ExceptionEnum e) {
+        return fail(e.getErrorCode(), e.getErrorMsg());
     }
 }

@@ -1,9 +1,11 @@
 package com.github.sugarmgp.demoproject.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.github.sugarmgp.demoproject.constant.ExceptionEnum;
 import com.github.sugarmgp.demoproject.dto.response.GetPostDetailResponse;
 import com.github.sugarmgp.demoproject.dto.response.GetPostListElement;
 import com.github.sugarmgp.demoproject.entity.Post;
+import com.github.sugarmgp.demoproject.exception.ApiException;
 import com.github.sugarmgp.demoproject.mapper.PostMapper;
 import com.github.sugarmgp.demoproject.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -36,12 +38,10 @@ public class PostServiceImpl implements PostService {
     public void deletePost(Integer userId, Integer postId) {
         Post post = postMapper.selectById(postId);
         if (post == null) {
-            // 缺失错误处理
-            return;
+            throw new ApiException(ExceptionEnum.RESOURCE_NOT_FOUND);
         }
         if (!post.getUserId().equals(userId)) {
-            // 缺失错误处理
-            return;
+            throw new ApiException(ExceptionEnum.PERMISSION_NOT_ALLOWED);
         }
         postMapper.deleteById(postId);
     }
@@ -50,12 +50,10 @@ public class PostServiceImpl implements PostService {
     public void updatePost(Integer userId, Integer postId, String title, String content) {
         Post post = postMapper.selectById(postId);
         if (post == null) {
-            // 缺失错误处理
-            return;
+            throw new ApiException(ExceptionEnum.RESOURCE_NOT_FOUND);
         }
         if (!post.getUserId().equals(userId)) {
-            // 缺失错误处理
-            return;
+            throw new ApiException(ExceptionEnum.PERMISSION_NOT_ALLOWED);
         }
         post.setTitle(title);
         post.setContent(content);
@@ -80,9 +78,9 @@ public class PostServiceImpl implements PostService {
     public GetPostDetailResponse getPostDetail(Integer id) {
         Post post = postMapper.selectById(id);
         if (post == null) {
-            // 缺失错误处理
-            return null;
+            throw new ApiException(ExceptionEnum.RESOURCE_NOT_FOUND);
         }
+
         GetPostDetailResponse resp = GetPostDetailResponse.builder()
                 .title(post.getTitle())
                 .content(post.getContent())
@@ -90,8 +88,7 @@ public class PostServiceImpl implements PostService {
                 .createdAt(post.getCreatedAt())
                 .updatedAt(post.getUpdatedAt())
                 .build();
-        post.setViewCount(post.getViewCount() + 1);
-        postMapper.updateById(post);
+        postMapper.incrementViewCount(id);
         return resp;
     }
 }

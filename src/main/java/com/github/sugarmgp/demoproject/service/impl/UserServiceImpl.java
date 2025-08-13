@@ -1,7 +1,9 @@
 package com.github.sugarmgp.demoproject.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.github.sugarmgp.demoproject.constant.ExceptionEnum;
 import com.github.sugarmgp.demoproject.entity.User;
+import com.github.sugarmgp.demoproject.exception.ApiException;
 import com.github.sugarmgp.demoproject.mapper.UserMapper;
 import com.github.sugarmgp.demoproject.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
             user = User.builder().username(username).password(password).build();
             userMapper.insert(user);
         } else if (!user.getPassword().equals(password)) {
-            return -1;
+            throw new ApiException(ExceptionEnum.WRONG_USERNAME_OR_PASSWORD);
         }
         return user.getId();
     }
