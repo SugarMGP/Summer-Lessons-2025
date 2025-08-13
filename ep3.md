@@ -133,8 +133,8 @@ public enum ExceptionEnum {
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public AjaxResult<Object> handleGlobalException(Exception e, HttpServletRequest request) {
-        HandlerUtils.logException(e, request);
+    public AjaxResult<Object> handleGlobalException(Exception e) {
+        HandlerUtils.logException(e);
         return AjaxResult.fail(ExceptionEnum.SERVER_ERROR);
     }
 }
