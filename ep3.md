@@ -149,3 +149,16 @@ public class GlobalExceptionHandler {
 常见 404 异常：
 - `NoResourceFoundException` 路径不存在
 - `HttpRequestMethodNotSupportedException` 请求方法不支持
+
+### 课外拓展
+
+这边列出一些可以课外研究研究的方面，以便你对 Spring 框架有更深的理解。
+
+注意：这些教程可能与最新的 Spring 版本有所出入，有疑问可以多上网上搜搜，或者问 Qwen、Deepseek 等大语言模型。
+
+- [Spring Bean](https://dunwu.github.io/spring-tutorial/pages/68097d/)
+- [Spring IOC](https://dunwu.github.io/spring-tutorial/pages/915530/)
+- [Spring 依赖注入](https://dunwu.github.io/spring-tutorial/pages/f61a1c/)
+- [Spring AOP](https://dunwu.github.io/spring-tutorial/pages/f61a1c/)
+- [Spring 访问 Redis](https://dunwu.github.io/spring-tutorial/pages/65e4a2/)
+- [Spring 集成调度器](https://dunwu.github.io/spring-tutorial/pages/a187f0/)
