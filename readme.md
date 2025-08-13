@@ -2,7 +2,9 @@
 
 精弘网络 2025 暑期微课 - Java 后端开发入门
 
-[课程工程文件](https://github.com/SugarMGP/Summer-Lessons-2025/tree/java-backend)
+[工程文件](https://github.com/SugarMGP/Summer-Lessons-2025/tree/java-backend)
+
+[工程接口文档](https://t8lqgboqry.apifox.cn/)
 
 [EP0 前置准备与环境搭建](ep0.md)
 
