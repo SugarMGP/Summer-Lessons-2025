@@ -85,6 +85,26 @@ public class AccessLogFilter implements Filter {
 
 ```java
 @Getter
+public class ApiException extends RuntimeException {
+    private final Integer errorCode;
+    private final String errorMsg;
+
+    public ApiException(Integer errorCode, String errorMsg) {
+        super(errorMsg);
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+    }
+
+    public ApiException(Integer errorCode, String errorMsg, Throwable cause) {
+        super(errorMsg, cause);
+        this.errorCode = errorCode;
+        this.errorMsg = errorMsg;
+    }
+}
+```
+
+```java
+@Getter
 public enum ExceptionEnum {
     INVALID_PARAMETER(200000, "参数错误"),
     RESOURCE_NOT_FOUND(200001, "资源不存在"),
@@ -105,27 +125,7 @@ public enum ExceptionEnum {
 }
 ```
 
-```java
-@Getter
-public class ApiException extends RuntimeException {
-    private final Integer errorCode;
-    private final String errorMsg;
-
-    public ApiException(Integer errorCode, String errorMsg) {
-        super(errorMsg);
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
-    }
-
-    public ApiException(Integer errorCode, String errorMsg, Throwable cause) {
-        super(errorMsg, cause);
-        this.errorCode = errorCode;
-        this.errorMsg = errorMsg;
-    }
-}
-```
-
-### 全局错误捕获
+### 错误捕获
 
 ```java
 @ControllerAdvice
@@ -145,3 +145,7 @@ public class GlobalExceptionHandler {
 - `JsonMappingException` Json解析失败
 - `HttpMessageNotReadableException` Json格式错误
 - `ServletRequestBindingException` Query参数错误
+
+常见 404 异常：
+- `NoResourceFoundException` 路径不存在
+- `HttpRequestMethodNotSupportedException` 请求方法不支持
