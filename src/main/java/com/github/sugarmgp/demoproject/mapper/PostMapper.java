@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Update;
  * @Entity com.github.sugarmgp.demoproject.entity.Post
  */
 public interface PostMapper extends BaseMapper<Post> {
-    @Update("UPDATE post SET view_count = view_count + 1 WHERE ${id}")
+    @Update("UPDATE post SET view_count = view_count + 1 WHERE id = #{id}")
     void incrementViewCount(@Param("id") Integer id);
 }
 
