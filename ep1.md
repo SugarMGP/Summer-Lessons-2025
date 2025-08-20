@@ -2,6 +2,8 @@
 
 ### 新建工程
 
+若无法连接到官方 Spring Initializr，可更换到国内站点 https://start.springboot.io/
+
 - Spring Web
 - Spring Validation
 - MySQL Driver
